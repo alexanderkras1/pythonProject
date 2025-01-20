@@ -1,9 +1,20 @@
-# input("Введите 4-х значное число:")
+from models import Student, Group
 
-num = input("Введите 4-х значное число:")
-num = int(num)
-print(num // 1000)
-print(num // 100 % 10)
-print(num // 10 % 10)
-print(num % 100 % 10)
+st1 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
+st2 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
 
+gr = Group('PD1')
+
+gr.add_student(st1)
+gr.add_student(st2)
+
+print(gr)  # Вывод информации о группе
+
+# Проверка поиска студента
+assert gr.find_student('Jobs') == st1, 'Test1'
+assert gr.find_student('Unknown') is None, 'Test2'
+assert isinstance(gr.find_student('Jobs'), Student), 'Test3'
+
+# Удаление студента
+gr.delete_student('Taylor')
+print(gr)  # Должен остаться только один студент
